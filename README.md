@@ -1,3 +1,3 @@
-# haskell-hangman
+# haskell-practice
 
-CLI hangman, attempt at haskell, still studying it (obvious from the code :D)
+attempt at haskell, still studying it (obvious from the code :D)
