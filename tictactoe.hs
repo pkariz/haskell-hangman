@@ -7,7 +7,7 @@ data Player = X | O deriving(Eq)
 
 data BoardState = BoardState Board Player
 
-data PlayState = XWon | OWon | End | Play
+data PlayState = XWon | OWon | Draw | Play
 
 main = do
   putStrLn getGameRules
@@ -46,14 +46,14 @@ getPlayState board = playState
     winningLine = removeEmptys $ map (\x -> x!!1) $ filter uniqueChars $ winScenarios board
     playState = case winningLine of
       [] -> if (length $ filter (\x -> x == '_') $ flattenList board) == 0
-        then End else Play
+        then Draw else Play
       (x:xs) -> if x == 'x' then XWon else OWon
 
 game boardState@(BoardState board player) = do
   case playState of
     XWon -> putStrLn "gg, X won"
     OWon -> putStrLn "gg, O won"
-    End -> putStrLn "draw"
+    Draw -> putStrLn "draw"
     Play -> do
       putStrLn $ getBoardRepr board
       putStrLn ((if player == X then "x" else "o") ++ " input position for the next play:")
